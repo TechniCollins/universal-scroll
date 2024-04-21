@@ -1,0 +1,12 @@
+html, body, #full_screen_canvas{
+	height: 100%;
+	width: 100%;
+}
+
+#full_screen_canvas::backdrop{
+	background-color: #fff;
+}
+
+#distance_info{
+	font-family: 'Orbitron', sans-serif;
+}

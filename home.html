@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Universal Scroll</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<button onclick="toggleFullScreen()">FULL SCREEN</button>
+
+	<div id = "full_screen_canvas">
+		<p id="distance_info">DISTANCE: <b id="distance">0</b> KM</p>
+		<p>PROBLEMS: <a class="problem_link" href="https://docs.google.com/forms/d/e/1FAIpQLSeu9k01Kn8XVcDrUIdUE2jS7BytwM_T5YXVulyq5KYFIhOewA/viewform?usp=sf_link" target="_blank">1</a> <a class="problem_link" href="https://docs.google.com/forms/d/e/1FAIpQLSeVObalgP8g3alzoIseVRdNpiW-n5qRO-Wvt-r4ebCdLcZl2Q/viewform?usp=sf_link" target="_blank">2</a> <a class="problem_link" href="https://docs.google.com/forms/d/e/1FAIpQLSebfzipSOTi3jbsbe3nahV5LwqBJNCgegALhltXMLmjvslPtQ/viewform?usp=sf_link" target="_blank">3</a> <a class="problem_link" href="https://docs.google.com/forms/d/e/1FAIpQLSdmgiBGQxpVv-Bu7cNwryStHYQunGKJ0aya2icgJ0DdBHeFeQ/viewform?usp=sf_link" target="_blank">4</a> <a class="problem_link" href="https://docs.google.com/forms/d/e/1FAIpQLSdiUHN8viZrsk3z_bKLS7KmPVJ9cmfqy0QfzUmPhPk1KUmxcw/viewform?usp=sf_link" target="_blank">5</a> </p>
+	</div>
+
+</body>
+
+<script>
+	const totalCount = 401000000;
+
+	function toggleFullScreen(){
+		const canvas = document.getElementById("full_screen_canvas");
+		canvas.requestFullscreen();
+	}
+
+	// Add event listeners for scroll up and up button
+	function addControlListener() {
+		document.addEventListener('keyup', function(event) {
+		    if (event.key === 'ArrowUp') {
+		        incrementCount(1);
+		    }
+		});
+	}
+
+	addControlListener()
+
+	function incrementCount(steps) {
+		current_distance_element = document.getElementById("distance");
+		current_distance_element.innerHTML = parseInt(current_distance_element.innerHTML) + steps;
+	}
+
+	// On click problem, award kms
+	$(document).ready(function(){
+		$("a").click(function(){
+			incrementCount(2000000);
+		});
+	});
+
+</script>
+
+</html>

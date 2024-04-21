@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocket Game</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  #rocket {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    # transform: translate(-50%, -100%);
+    width: 50px;
+    height: 100px;
+    background-image: url('rocket.jpg'); /* You need to provide your rocket image */
+    background-size: cover;
+  }
+</style>
+</head>
+<body>
+<div id="rocket"></div>
+
+<script>
+  // Get rocket element
+  var rocket = document.getElementById('rocket');
+
+  // Initial position and distance traveled
+  var position = 0; // in kilometers
+  var distanceTraveled = 0; // in kilometers
+
+  // Function to update rocket position
+  function updateRocketPosition() {
+    var newPosition = position * 10; // Convert kilometers to pixels (adjust as needed)
+    rocket.style.top = (100 - newPosition) + '%';
+  }
+
+  // Function to handle scroll event
+  function handleScroll() {
+    // Calculate distance traveled based on scroll
+    var scrollTop = window.scrollY;
+    var newDistanceTraveled = Math.floor(scrollTop / 1000);
+
+    // Check if distance traveled has changed
+    if (newDistanceTraveled !== distanceTraveled) {
+      // Update distance traveled and position
+      distanceTraveled = newDistanceTraveled;
+      position = distanceTraveled;
+
+      // Update rocket position
+      updateRocketPosition();
+
+      // Check if reached destination
+      if (distanceTraveled >= 401000) { // 401 million kilometers
+        alert("Congratulations! You've reached your destination.");
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }
+  }
+
+  // Add scroll event listener
+  window.addEventListener('scroll', handleScroll);
+</script>
+</body>
+</html>
